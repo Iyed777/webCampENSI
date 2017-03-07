@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <title>For now idk</title>
+</head>
+<script>
+//    $('form').validate({
+//        rules: {
+//            'is_username': {
+//                minlength: 6,
+//                maxlength: 15,
+//                required: true
+//            }
+//            , 'is_uname': {
+//                minlength: 3,
+//                maxlength: 15,
+//                required: true
+//            }
+//            , 'is_ulastname': {
+//                minlength: 3,
+//                maxlength: 15,
+//                required: true
+//            }
+//            , 'is_uemail': {
+//                email: true,
+//                required: true
+//            }
+//            , 'is_upassword': {
+//                minlength: 6, 
+//                password: true,
+//                required: true
+//            }
+//            , 'upasswordConfirm': {
+//                minlength: 6,
+//                equalTo: '#upassword',
+//                required: true
+//            }
+//        }
+//        , errorPlacement: function (error, element) {
+//            error.insertAfter('.form-group'); //So i putted it after the .form-group so it will not include to your append/prepend group.
+//        }
+//        , highlight: function (element) {
+//            $(element).closest('.form-group').addClass('has-error');
+//        }
+//        , unhighlight: function (element) {
+//            $(element).closest('.form-group').removeClass('has-error');
+//        }
+//    });
+//    // override jquery validate plugin defaults
+//    $.validator.setDefaults({
+//        highlight: function (element) {
+//            $(element).closest('.form-group').addClass('has-error');
+//        }
+//        , unhighlight: function (element) {
+//            $(element).closest('.form-group').removeClass('has-error');
+//        }
+//        , errorElement: 'span'
+//        , errorClass: 'help-block'
+//        , errorPlacement: function (error, element) {
+//            if (element.parent('.input-group').length) {
+//                error.insertAfter(element.parent());
+//            }
+//            else {
+//                error.insertAfter(element);
+//            }
+//        }
+//    });
+//    //
+    
+    $(document).ready(function() {
+    $('#signupForm').formValidation({
+        // I am validating Bootstrap form
+        framework: 'bootstrap',
+
+       
+        // List of fields and their validation rules
+        fields: {
+            '#id_username': {
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required and cannot be empty'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'The username can only consist of alphabetical, number and underscore'
+                    }
+                }
+            },
+             '#id_uemail': {
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required and cannot be empty'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The username must be more than 6 and less than 30 characters long'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'The username can only consist of alphabetical, number and underscore'
+                    }
+                }
+            },
+            '#id_uemail': {
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required'
+                    },
+                    emailAddress: {
+                        message: 'The input is not a valid email address'
+                    }
+                }
+            },
+            '#id_upassword': {
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required and cannot be empty'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 30,
+                        message: 'The password must be more than 6 and less than 30 characters long'
+                    }
+                }
+        }
+            '#id_upasswordConfirm': {
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required and cannot be empty'
+                    },
+                    identical: {
+                    field: 'password',
+                    message: 'The password and its confirm are not the same'
+                    }
+                }
+            },
+            
+    }
+    });
+});
+</script>
+
+<body> -------------------------------------------------
+    <div class="container">
+  
+        <form id="signupForm" data-toggle="validator" role="form" method="POST">
+        {% block content %}
+            <div class="form-group">
+                <label for="username" class="control-label">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="id_username" placeholder="Entrez un nom d'utilisateur" required> </div>
+            <div class="form-group">
+                <label for="uname" class="control-label">Nom</label>
+                <input type="text" class="form-control" id="is_uname" placeholder="Entrez votre Nom" required> </div>
+            <div class="form-group">
+                <label for="uname" class="control-label">Prénom</label>
+                <input type="text" class="form-control" id="is_ulastname" placeholder="Entrez votre Prénom" required> </div>
+            <div class="form-group">
+                <label for="uemail" class="control-label">Email</label>
+                <input type="email" class="form-control" id="id_email" placeholder="Email" data-error="Email address is invalid" required>
+            </div>
+            <div class="form-group">
+                <label for="{{form.password.id_for_label}}" class="control-label">Mot de Passe</label>
+                <div class="form-inline row">
+                    <div class="form-group col-sm-6">
+                        <input type="password"  class="form-control" id="upassword" placeholder="Mot de Passe" required>
+                        <div class="help-block">Minimum of 6 characters</div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input type="password" class="form-control" id="upasswordConfirm" data-match="#upassword" data-match-error="Mots de Passe non conirmé" placeholder="Confirmez Votre Mot de Passe" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="{{form.sexe.id_for_label}}" class="control-label"> Sexe </label>
+                <select class="form-control" id="usex" required>
+                    <option disabled selected value></option>
+                    <option>Homme</option>
+                    <option>Femme</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="terms" data-error="TErms not accepted" required> J'accepte les termes d'utilisations </label>
+                </div>
+            </div>
+              {% endblock content %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-info">Submit</button>
+            </div>
+        </form>
+        
+    </div> 
+    --------------------------------------------------
+<!--
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> Launch demo modal </button>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Log in</h4> </div>
+                <div class="modal-body">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.com/libraries/1000hz-bootstrap-validator"></script>
+</body>
+
+</html>
